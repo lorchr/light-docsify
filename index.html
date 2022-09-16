@@ -12,12 +12,21 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
-      name: '',
-      repo: '',
-      loadSidebar: true
+      name: 'light-docsify',
+      repo: 'https://github.com/lorchr/light-docsify',
+      basePath: "/",
+      // 加载 _sidebar.md
+      loadSidebar: true,
+      subMaxLevel: 2,
+      // 加载 _navbar.md
+      loadNavbar: true,
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!--emoji-->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <!--复制到剪切板-->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 </body>
 </html>

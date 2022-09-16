@@ -1,9 +1,30 @@
 # 安装
-> npm install -g docsify-cli
+
+```shell
+npm install -g docsify-cli
+```
 
 # 初始化
-> mkdir light-docsify
-> docsify init
+
+```shell
+mkdir light-docsify
+docsify init
+```
 
 # 运行
-> docsify serve ./
+
+```shell
+docsify serve ./
+```
+
+# 推送仓库
+
+```shell
+echo "# light-docsify" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:lorchr/light-docsify.git
+git push -u origin main
+```
