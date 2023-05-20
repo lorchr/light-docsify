@@ -51,3 +51,23 @@ git push -u origin main
 - Source : Deploy from a branch
 - Branch : Main docs
 - Save and visit `https://lorchr.github.io/light-docsify`
+
+# 问题
+1. 集成其他的文档
+   
+   ```json
+   // 集成官方文档及其导航栏时，不需要此项设置
+   alias: {
+        // '/.*/_sidebar.md': '/_sidebar.md', //防止意外回退
+      },
+   ```
+
+2. 部署到Github Pages
+
+    ```conf
+    // 本地运行调试
+    basePath: "/",
+
+    // 部署到Github Pages
+    basePath: "https://lorchr.github.io/light-docsify/",
+    ```
