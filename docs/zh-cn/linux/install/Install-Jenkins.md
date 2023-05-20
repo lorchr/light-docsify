@@ -61,6 +61,7 @@ systemctl daemon-reload && systemctl start jenkins
 ## 2. 初始化配置 Jenkins
 
 这里登录需要使用到一个管理员密码，我们可以在服务器上使用如下命令获得
+
 > cat /var/lib/jenkins/secrets/initialAdminPassword
 
 1. 更新Jenkins到最新版本
@@ -82,6 +83,7 @@ systemctl daemon-reload && systemctl start jenkins
 **暂时不要替换插件源，进入jenkins直接升级版本，升级到最高版本后，所有插件即可安装**
 
 如果安装很慢，可以先设置国内的插件源
+
 ```shell
 systemctl stop jenkins
 vim /var/lib/jenkins/hudson.model.UpdateCenter.xml
@@ -107,10 +109,13 @@ yum install -y curl policycoreutils-python openssh-server
 ## 3. 安装问题
 
 1. 更新版本
+
 > https://mirrors.tuna.tsinghua.edu.cn/jenkins/war-stable/2.332.4/
+
 下载最新war包。放入/usr/lib/jenkins/替换旧版war
 
 2. 安装jenkins后下载插件报错日志如下:
+
 ```shell
 sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
         at sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:145)
@@ -119,34 +124,40 @@ sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid
         at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:382)
 Caused: sun.security.validator.ValidatorException: PKIX path building failed
 ```
+
 原因:
 
 默认证书有问题
 
 解决:
 1. 更新站点
+
 > http://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
 
 2. 进入jenkins站点更新目录修改默认json配置
+
 ```shell
 cd /var/lib/jenkins/updates/
 
-全局替换default.json里面的下载插件地址:
+# 全局替换default.json里面的下载插件地址:
 
 sed -i 's/http:\/\/updates.jenkins-ci.org\/download/http:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g' default.json
 sed -i 's/http:\/\/www.google.com/http:\/\/www.baidu.com/g' default.json
 ```
 
 3. 查找证书路径:
+
 > find / -type f -name cacerts
 
 找到了上面的地址: /etc/pki/ca-trust/extracted/java/cacerts
 
 4. 修改jenkins配置文件
+
 > vi /etc/sysconfig/jenkins
 > JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djavax.net.ssl.trustStore=/etc/pki/ca-trust/extracted/java/cacerts"
 
 5. 重启jenkins生效
+
 > systemctl daemon-reload && systemctl restart jenkins
 
 ## 4. 创建构建任务
@@ -165,6 +176,7 @@ sed -i 's/http:\/\/www.google.com/http:\/\/www.baidu.com/g' default.json
 11. `Post Steps`添加`Execute Shell`执行后续Shell脚本。选择 `Run only if build succeeds`仅当build成功执行
 
 ### 2. 后端打包脚本
+
 ```shell
 # 定义变量
 API_NAME="pd-service-admin"
@@ -251,6 +263,7 @@ rm -f Dockerfile
 10. `Build`添加`Execute Shell`执行后续Shell脚本。选择 `Run only if build succeeds`仅当build成功执行
 
 ### 4. 前端打包脚本
+
 ```shell
 # 查看Node和NPM版本
 node -v
@@ -276,6 +289,7 @@ systemctl restart nginx
 ```
 
 使用私服的脚本
+
 ```shell
 # 查看Node和NPM版本
 node -v
