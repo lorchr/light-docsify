@@ -47,6 +47,7 @@ git push -u origin main
 点击进入项目的Settings页面`https://github.com/lorchr/light-docsify/settings/pages`
 
 `Settings` -> `Pages` -> `Build and deployment`
-Source : Deploy from a branch
-Branch : Main docs
-Save and visit `https://lorchr.github.io/light-docsify`
+
+- Source : Deploy from a branch
+- Branch : Main docs
+- Save and visit `https://lorchr.github.io/light-docsify`
