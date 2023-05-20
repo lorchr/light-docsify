@@ -22,13 +22,16 @@
     window.$docsify = {
       name: 'light-docsify',
       repo: 'https://github.com/lorchr/light-docsify',
-      basePath: "/",
+      // 本地编写调试
+      // basePath: "/",
+      // Github Pages
+      basePath: "https://lorchr.github.io/light-docsify/",
       // 加载 _sidebar.md 侧边导航栏 
       loadSidebar: true,
       maxLevel: 2,
       subMaxLevel: 4,
       alias: {
-        // '/.*/_sidebar.md': '/_sidebar.md', //防止意外回退
+        '/.*/_sidebar.md': '/_sidebar.md', //防止意外回退
         '/.*/_navbar.md': '/_navbar.md'    //防止意外回退
       },
       // 加载 _navbar.md 顶部导航栏 
