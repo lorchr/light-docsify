@@ -57,32 +57,32 @@ vim /etc/emqx/emqx.conf
 
 2. 共享订阅的负载均衡策略
 
-| 均衡策略      | 说明                         |
-| ------------- | ---------------------------- |
-| random        | 在所有订阅者中随机选择       |
-| round_robin   | 按照订阅顺序                 |
-| sticky        | 一直发往上次选取的订阅者     |
-| hash          | 按照发布者 ClientID 的哈希值 |
-| hash_clientid | 按照发布者 ClientID 的哈希值 |
-| hash_topic    | 按照topic 的哈希值           |
+  | 均衡策略      | 说明                         |
+  | ------------- | ---------------------------- |
+  | random        | 在所有订阅者中随机选择       |
+  | round_robin   | 按照订阅顺序                 |
+  | sticky        | 一直发往上次选取的订阅者     |
+  | hash          | 按照发布者 ClientID 的哈希值 |
+  | hash_clientid | 按照发布者 ClientID 的哈希值 |
+  | hash_topic    | 按照topic 的哈希值           |
 
-1. 关于Topic路径
+3. 关于Topic路径
 
-```
-$share/<group-name>/<topic-name>(/<sub_topic-name>)*
-```
+  ```
+  $share/<group-name>/<topic-name>(/<sub_topic-name>)*
+  ```
 
-- $share : 共享订阅的标识
-- group-name : 共享订阅的组别名称 group-name
-- topic-name : 实际的topic名称
-- topic-sub-name: topic名称，可以有多段组成
+   - $share : 共享订阅的标识
+   - group-name : 共享订阅的组别名称 group-name
+   - topic-name : 实际的topic名称
+   - topic-sub-name: topic名称，可以有多段组成
 
-| 示例                         | 前缀   | 组别  | Topic 名称      |
-| ---------------------------- | ------ | ----- | --------------- |
-| $share/abc/t/1               | $share | abc   | t/1             |
-| $share/group/topic/sub_topic | $share | group | topic/sub_topic |
-| $queue/topic/sub_topic       | $queue | -     | topic/sub_topic |
+   | 示例                         | 前缀   | 组别  | Topic 名称      |
+   | ---------------------------- | ------ | ----- | --------------- |
+   | $share/abc/t/1               | $share | abc   | t/1             |
+   | $share/group/topic/sub_topic | $share | group | topic/sub_topic |
+   | $queue/topic/sub_topic       | $queue | -     | topic/sub_topic |
 
 **注意：**
-- 在订阅Topic时，使用 `$share/<group-name>/<topic-name>`
+- 在订阅Topic时，使用 `$share/<group-name>/<topic-name>`或`$queue/<topic-name>`
 - 在发送消息时，使用 `<topic-name>`，不需要带`前缀`及`组别`
