@@ -148,19 +148,26 @@ git pull 仓库别名 分支 --allow-unrelated-histories
     # deb-src http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib
     # deb-src http://mirrors.aliyun.com/debian-security buster/updates main
     EOF
+    ```
 
+3. 安装软件
+   
+   ```shell
     # 更新软件源
     apt-get update && apt-get upgrade -y
 
-    # 安装软件
-    apt-get install -y vim wget
+    # 安装apt-file
+    apt-get install -y apt-file && apt-file update
 
     # 查找软件
     apt-file search /bin/ps | grep -w "bin/ps"
 
+    # 安装软件
+    apt-get install -y vim wget
+
     # Docker容器交互
     docker exec -it -u root <container-id(name)> /bin/bash
-    ```
+   ```
 
 ## 4. Redis Stream 基本命令 
 
@@ -228,3 +235,6 @@ return temp
 
 # EMQX
 [EMQX](./Docker-EMQX.md ':include')
+
+# Windows下Docker端口被占用的问题
+[Docker port bind error in Windows](./windows-docker-port-bind-error.md)
