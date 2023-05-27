@@ -1,4 +1,4 @@
-## 1. Harbor私服搭建
+## 1. 安装 Harbor 私服
 
 - https://goharbor.io/
 - https://github.com/goharbor/harbor/releases
