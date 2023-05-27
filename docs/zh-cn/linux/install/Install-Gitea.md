@@ -1,4 +1,4 @@
-# 四、 安装 Gitea
+## 1. 安装 Gitea
 
 - https://dl.gitea.io/gitea
 - https://www.kernel.org/pub/software/scm/git/git-2.37.2.tar.gz

@@ -1,4 +1,6 @@
 [InfluxDB](https://hub.docker.com/_/influxdb)
+
+## 1. Docker安装
 ```shell
 docker run -d \
   --publish 8086:8086 \
@@ -60,5 +62,5 @@ show field keys from cpu
 ```
 
 - Account
-  admin/admin@123
-  root/123456
+  - admin/admin@123
+  - root/123456

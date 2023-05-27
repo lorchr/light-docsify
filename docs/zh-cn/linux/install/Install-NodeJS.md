@@ -1,4 +1,4 @@
-# 二、 安装 NodeJS
+## 1. 安装 NodeJS
 
 全局设置配置nodejs，起名jenkins-nodes12.18
 

@@ -1,10 +1,19 @@
-[Redis](https://hub.docker.com/_/redis)
+- [Redis](https://hub.docker.com/_/redis)
+- [RedisInsight](https://hub.docker.com/r/redislabs/redisinsight)
+
+## 1. Docker安装
 ```shell
 docker run -d \
   --publish 6379:6379 \
   --restart=no \
   --name redis \
   redis:6.2
+
+docker run -d \
+  --publish 38001:8001 \
+  --restart=no \
+  --name redisinsight \
+  redislabs/redisinsight:1.14.0
 
 docker exec -it -u root redis /bin/bash
 
@@ -16,8 +25,11 @@ docker container restart redis
 ```
 
 - Account
-    /admin
+  - /admin
 
+[RedisInsight](http://localhost:38001)
+
+## 2. 配置
 ```conf
 # 绑定本机的IP地址，其他客户端只能通过该IP访问redis，本机多个网卡时，可以指定其中的一个或多个（空格分隔）
 # bind 127.0.0.1              本机回环地址，只能本机访问
@@ -64,4 +76,56 @@ appendonly no
 #always：表示每次更新操作后手动调用fsync()将数据写到磁盘（慢，安全）
 #everysec：表示每秒同步一次（折衷，默认值）
 appendfsync everysec
+```
+
+## 3. Redis Stream 基本命令 
+
+- https://blog.csdn.net/qq_43956758/article/details/109860706
+
+```lua
+# 创建stream
+XADD maintenance_order:event_alarm * type customIncident;
+
+# 创建consumer group
+XGROUP CREATE maintenance_order:event_alarm default_group 0;
+
+# 获取stream元素个数
+XLEN maintenance_order:event_alarm;
+
+# 获取stream中所有元素 - 最小值 + 做大值
+XRANGE maintenance_order:event_alarm - +;
+
+# 获取stream信息
+XINFO STREAM maintenance_order:event_alarm;
+
+# 获取stream 的consumer group信息
+XINFO GROUPS maintenance_order:event_alarm;
+
+# 消费数据
+XREADGROUP GROUP default_group default_consumer COUNT 1 STREAMS maintenance_order:event_alarm >;
+
+# 删除消息
+XDEL maintenance_order:event_alarm record_id;
+
+# 删除stream
+DEL maintenance_order:event_alarm;
+```
+
+## 4. Redis Lua脚本
+```lua
+-- 删除stream
+DEL maintenance_order:event_alarm;
+
+-- 设备告警
+keys device_alarm_matching*
+del device_alarm_matching:
+
+-- 删除告警历史
+keys thing_alarm_matching*
+local keys = redis.call('keys', KEYS[1])
+local temp = {}
+for iter, value in ipairs(keys) do
+    table.insert(temp, {value, redis.call('del', value) })
+end
+return temp
 ```

@@ -6,7 +6,7 @@
 | node1  | 192.168.137.102 |      |
 | node2  | 192.168.137.103 |      |
 
-# 一、 环境准备
+## 1. 环境准备
 ### 1. 切换及添加安装源
 ```shell
 # 安装 wget
@@ -110,7 +110,7 @@ shutdown -r now
 reboot -n
 ```
 
-# 二、安装Docker/kubeadm/kubelet
+## 2. 安装Docker/kubeadm/kubelet
 Kubernetes默认CRI（容器运行时）为Docker，因此先安装Docker。
 
 ### 1. 安装Docker
@@ -245,7 +245,7 @@ systemctl start kubelet && systemctl enable kubelet
 systemctl status kubelet
 ```
 
-# 三、初始化K8s Master节点
+## 3. 初始化K8s Master节点
 
 ### 1. 在192.168.137.101（Master）执行初始化命令
 ```shell
@@ -374,7 +374,7 @@ journalctl -u kubelet
 systemctl daemon-reload && systemctl restart kubelet
 ```
 
-# 四、注册K8s Node节点
+## 4. 注册K8s Node节点
 
 向集群添加新节点，执行在kubeadm init输出的kubeadm join命令：
 ```shell
@@ -411,7 +411,7 @@ This node has joined the cluster:
 Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 ```
 
-# 五、部署容器网络（CNI）
+## 5. 部署容器网络（CNI）
 ### 1. 在Master节点部署flannel
 ```shell
 # 下载flannel启动文件
@@ -506,7 +506,7 @@ kubectl delete pod kube-proxy-565f8 -n kube-system
 kubectl get pod -A | grep kube-proxy
 ```
 
-# 六、部署官方Dashboard（UI）
+## 6. 部署官方Dashboard（UI）
 ### 1. 部署Dashboard
 ```shell
 # 下载官方Dashboard文件
@@ -628,7 +628,7 @@ kubectl describe secret -n kube-system $(kubectl get secret -n kube-system | gre
 eyJhbGciOiJSUzI1NiIsImtpZCI6Il9HcDhZZmNiVTVHVTZsbDhxY29DNVUybnYzREZxMFUySGpLYmVxWGtyU1EifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkYXNoYm9hcmQtYWRtaW4tdG9rZW4tOWp0cmwiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGFzaGJvYXJkLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiYzVjZTg4NTAtMWMzMy00MWU3LWIxN2QtMzM2YmNkZTRlYzZlIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmRhc2hib2FyZC1hZG1pbiJ9.dK2ITEiw1hpWWugY5hOoLFF1-AA_9S--pQNjKZ6UiTkKcizZl4AjLyga7iPvBPFxfxBBe0xmfGHrFN0tO7NzY9XEZyXtLfUNSkF1xHwnM-IfyMOA2td2B7hFwA11G5Bl7fP-QSW_g0n8brokh6znQQ5Bbtziaih2ZM-zkyq-BRqMovukXnZW0k2OFyUMzCXV5NmgVrDCr_yg2LbkIYgv_B1uUZpd6A5Ebkxo6CYFxAhXQdUl4doh3Lq0HwuPfe7Pu0vK_1KmdLXQoTNQpwXlBmNh0THA4A0MxlC_VpxUUkrghh0qf3J1-uWo7X2YD41TMfudeTfcfPFewB47yNgyyg
 ```
 
-# 七、状态查看
+## 7. 状态查看
 1. 查看节点状态
 > kubectl get nodes
 
@@ -651,7 +651,7 @@ controller-manager   Healthy   ok
 etcd-0               Healthy   {"health":"true"}
 ```
 
-# 八、部署业务服务
+## 8. 部署业务服务
 ### 1. 创建命名空间
 > kubectl create namespace svc-pd-service
 
@@ -665,9 +665,10 @@ etcd-0               Healthy   {"health":"true"}
 
 ```
 
-# 十、异常处理
+## 10. 异常处理
 
 1. CGroup与Docker不匹配，CPU核心数至少要两个，需要关闭Swap分区
+
 ```shell
 # 报错
 W0823 17:37:30.758727    2645 configset.go:202] WARNING: kubeadm cannot validate component configs for API groups [kubelet.config.k8s.io kubeproxy.config.k8s.io]

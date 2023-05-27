@@ -1,6 +1,6 @@
 目前来说，网站安装https是大势所趋，几乎每一个网站在建站之初，就会安装好https证书。
 
-# Https 介绍
+## 1. Https 介绍
 https（全称：Hyper Text Transfer Protocol over Secure Socket Layer，超文本传输安全协议），是以安全为目标的HTTP通道，是HTTP的扩展（升级版），用于计算机网络的安全通信”——维基百科。
 
 简单理解为：在http的基础上，增加安全套接字层（SSL），既可以变成https，作用就是让网站数据传输更加安全
@@ -19,11 +19,11 @@ SSL证书的类型主要分为3种：
 
 注：它们的安全程度依次递减。
 
-# 如何免费申请Https证书
+## 2. 如何免费申请Https证书
 
 这里介绍常用的四种免费证书申请方式。
 
-## [Let’s Encrypt](https://letsencrypt.org/)
+### 1. [Let’s Encrypt](https://letsencrypt.org/)
 
 Let’s Encrypt 是国外一个公共的免费 SSL 项目，由 Linux 基金会托管，它的来头不小，由 Mozilla、思科、Akamai、IdenTrust 和 EFF 等组织发起，目的就是向网站自动签发和管理免费证书，以便加速互联网由 HTTP 过渡到 HTTPS。
 
@@ -31,13 +31,13 @@ Let’s Encrypt安装部署简单、方便，目前Cpanel、Oneinstack等面板�
 
 最后选择Let’s Encrypt，一方面是Let’s Encrypt SSL已经被Firefox、Chrome、IE等浏览器所支持。另一方面，Let’s Encrypt SSL证书下载和安装已经是傻瓜式的简单了。
 
-### 申请教程
+#### 申请教程
 
 官网使用教程：https://certbot.eff.org/
 
 在界面选择部署到什么web服务上和操作系统是那款后，会自动生成如何安装和使用的步骤流程。
 
-## [Cloudflare](https://www.cloudflare.com/zh-cn/)
+### 2. [Cloudflare](https://www.cloudflare.com/zh-cn/)
 
 cloudflare是一家国外的 CDN 加速服务商，还是很有名气的。提供免费和付费的加速和网站保护服务。cloudflare提供了不同类型的套餐，即使是免费用户，cloudflare 提供的功能也是很全面的。Cloudflare除了提供CDN，也提供免费的SSL证书，使网站http变成https加密。Cloudflare一键设置ssl证书，操作简单，很多站长都使用。CloudFlare提供的免费SSL证书是UniversalSSL，即通用SSL，用户无需向证书发放机构申请和配置证书就可以使用的SSL证书，CloudFlare向所有用户(包括免费用户)提供SSL加密功能。
 
@@ -45,18 +45,18 @@ cloudflare是一家国外的 CDN 加速服务商，还是很有名气的。提�
 专属福利
 👉点击领取：651页Java面试题库
 
-### 申请教程
+#### 申请教程
 
 cloudflare注册：https://dash.cloudflare.com/sign-up
 
 添加站点(你的域名）：添加网站，要填写网站根域名，就是你购买域名时的完整域名名称(没有添加任何前缀)图片选择那种套餐(个人使用推荐免费开始)图片它会让你修改dns为CF所提供(就是你到域名服务商那取消掉dns解析，托管到CF 网站)图片
 始终https(CF网站默认有提供，但是未启用,不想使用CF的可以上传证书)图片
 
-## [FreeSSL](https://freessl.cn/)
+### 3. [FreeSSL](https://freessl.cn/)
 
 一个提供免费HTTPS证书申请的网站，同一个域名只支持申请20个
 
-### 申请教程
+#### 申请教程
 
 准备域名，选择供应商图片填写邮箱，选择生成方式图片域名提供商(云平台DNS解析)处配置TXT记录值图片
 
@@ -87,11 +87,11 @@ server {
 service nginx force-reload
 ```
 
-## 阿里云(云厂商提供)免费证书
+### 4. 阿里云(云厂商提供)免费证书
 
 赛门铁克是 SSL/TLS 证书的领先提供商，为全球一百多万台网络服务器提供安全防护。选择赛门铁克后，证书颁发机构 (CA) 将妥善保护您的网站和信誉，让您安枕无忧。免费数字证书，最多保护一个明细子域名，不支持通配符，一个阿云帐户最多签发20张免费证书 保护一个明细域名，例如: mimvp.com，proxy.mimvp.com，blog.mimvp.com，各个明细子域名都算一个域名， 如果每一个明细域名，都需要配置SSL，则需要分别申请多个免费的SSL证书。
 
-## 申请教程
+#### 申请教程
 
 申请免费DV试用证书文档：https://help.aliyun.com/document_detail/156645.html
 
@@ -99,17 +99,14 @@ service nginx force-reload
 
 购买证书
 
-我这里已经购买过了，阿里云免费证书 一个自然年只能买一次，一次有20个针对单个域名申请的机会图片图片
+我这里已经购买过了，阿里云免费证书 一个自然年只能买一次，一次有20个针对单个域名申请的机会
 
-提交免费证书申请
-点击创建证书
-图片
-点击证书申请
-图片域名提供商(云平台DNS解析)处配置TXT记录值
-图片
-提交审核
-图片
-等待证书申请图片
+1. 提交免费证书申请
+2. 点击创建证书
+3. 点击证书申请
+4. 提交审核
+5. 等待证书审核
+
 等待CA中心审核您的证书申请，并在审核通过后为您签发证书。DV证书一般会在2个小时内完成审核和签发。您可以在证书列表中查看证书的状态。证书签发后，证书状态将更新为已签发。
 
 部署到服务器(例子:nginx)

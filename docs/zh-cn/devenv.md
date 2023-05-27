@@ -1,6 +1,6 @@
-开发环境搭建
+# Dev Environment
 
-# 一、软件列表
+# 1. 软件列表
 1. IDEA             zhile.io
 2. DBeaver
 3. MobaxTerm
@@ -14,7 +14,7 @@
 11. 企业微信\钉钉
 12. FoxMail
 
-# 二、软件安装
+# 2. 软件安装
 ## 1. [IDEA](zhile.io)
 
 1. Jrebel
@@ -169,72 +169,20 @@ git pull 仓库别名 分支 --allow-unrelated-histories
     docker exec -it -u root <container-id(name)> /bin/bash
    ```
 
-## 4. Redis Stream 基本命令 
+# 3. Mysql
+[Mysql](devenv/Docker-Mysql.md ':include')
 
-- https://blog.csdn.net/qq_43956758/article/details/109860706
+# 4. Pgsql
+[Pgsql](devenv/Docker-Pgsql.md ':include')
 
-```lua
-# 创建stream
-XADD maintenance_order:event_alarm * type customIncident;
+# 5. Redis
+[Redis](devenv/Docker-Redis.md ':include')
 
-# 创建consumer group
-XGROUP CREATE maintenance_order:event_alarm default_group 0;
+# 6. InfluxDB
+[InfluxDB](devenv/Docker-InfluxDB.md ':include')
 
-# 获取stream元素个数
-XLEN maintenance_order:event_alarm;
+# 7. EMQX
+[EMQX](devenv/Docker-EMQX.md ':include')
 
-# 获取stream中所有元素 - 最小值 + 做大值
-XRANGE maintenance_order:event_alarm - +;
-
-# 获取stream信息
-XINFO STREAM maintenance_order:event_alarm;
-
-# 获取stream 的consumer group信息
-XINFO GROUPS maintenance_order:event_alarm;
-
-# 消费数据
-XREADGROUP GROUP default_group default_consumer COUNT 1 STREAMS maintenance_order:event_alarm >;
-
-# 删除消息
-XDEL maintenance_order:event_alarm record_id;
-
-# 删除stream
-DEL maintenance_order:event_alarm;
-```
-
-Redis Lua脚本
-```lua
--- 删除stream
-DEL maintenance_order:event_alarm;
-
--- 设备告警
-keys device_alarm_matching*
-del device_alarm_matching:
-
--- 删除告警历史
-keys thing_alarm_matching*
-local keys = redis.call('keys', KEYS[1])
-local temp = {}
-for iter, value in ipairs(keys) do
-    table.insert(temp, {value, redis.call('del', value) })
-end
-return temp
-```
-
-# Mysql
-[Mysql](./Docker-Mysql.md ':include')
-
-# Pgsql
-[Pgsql](./Docker-Pgsql.md ':include')
-
-# Redis
-[Redis](./Docker-Redis.md ':include')
-
-# InfluxDB
-[InfluxDB](./Docker-InfluxDB.md ':include')
-
-# EMQX
-[EMQX](./Docker-EMQX.md ':include')
-
-# Windows下Docker端口被占用的问题
-[Docker port bind error in Windows](./windows-docker-port-bind-error.md ':include')
+# 8. Windows下Docker端口被占用的问题
+[Docker port bind error in Windows](devenv/Docker-Port-Bind-Error-In-Windows.md ':include')

@@ -1,12 +1,12 @@
-# 下载安装包
-
+## 1. 安装
+### 1. 下载安装包
 https://pkgs.org/download/ntp
 
 - autogen-libopts-5.18-5.el7.x86_64.rpm
 - ntpdate-4.2.6p5-29.el7.centos.2.x86_64.rpm
 - ntp-4.2.6p5-29.el7.centos.2.x86_64.rpm
 
-# 安装NTP
+### 2. 安装NTP
 ```shell
 [root@light pkg]# rpm -ivh autogen-libopts-5.18-5.el7.x86_64.rpm
 准备中...                          ################################# [100%]
@@ -21,22 +21,19 @@ https://pkgs.org/download/ntp
 正在升级/安装...
    1:ntp-4.2.6p5-29.el7.centos.2      ################################# [100%]
 ```
-# 查看NTP版本
+
+### 3. 查看NTP版本
 ```shell
 [root@light pkg]# rpm -q ntp
 ntp-4.2.6p5-29.el7.centos.2.x86_64
 ```
-# 开机启动
-```shell
-[root@light pkg]# systemctl enable ntpd
-Created symlink from /etc/systemd/system/multi-user.target.wants/ntpd.service to /usr/lib/systemd/system/ntpd.service.
-```
-# 启动NTP
+
+### 4. 启动NTP
 ```shell
 [root@light pkg]# systemctl start ntpd
 ```
 
-# 查看NTP状态
+### 5. 查看NTP状态
 ```shell
 [root@light pkg]# systemctl status ntpd
 ● ntpd.service - Network Time Service
@@ -59,7 +56,14 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/ntpd.service to
 11月 23 14:10:06 light ntpd[1636]: Deferring DNS for 0.centos.pool.ntp.org 1
 ```
 
-# 配置NTP
+## 2. 配置
+### 1. 设置开机启动
+```shell
+[root@light pkg]# systemctl enable ntpd
+Created symlink from /etc/systemd/system/multi-user.target.wants/ntpd.service to /usr/lib/systemd/system/ntpd.service.
+```
+
+### 2. 配置NTP
 ```shell
 [root@light pkg]# vim /etc/ntp.conf
 
@@ -101,12 +105,12 @@ restrict [你的IP] mask [netmask_IP] [parameter]
 
 那如果你沒有在 parameter 的地方加上任何參數的話，這表示『該 IP 或網段不受任何限制』的意思喔！一般來說，我們可以先關閉 NTP 的使用權限，然後再一個一個的啟用允許登入的網段。
 
-# 查看时间是否已同步
+### 3. 查看时间是否已同步
 ```shell
 [root@light pkg]# ntpstat
 ```
 
-# 查询时间
+### 4. 查询时间
 ```shell
 [root@light pkg]# timedatectl
       Local time: 三 2022-11-23 14:19:18 CST
@@ -119,7 +123,7 @@ NTP synchronized: no
       DST active: n/a
 ```
 
-# 验证
+### 5. 验证
 ```shell
 [root@light pkg]# ntpdate 192.168.137.218
 23 Nov 14:19:48 ntpdate[1712]: the NTP socket is in use, exiting
@@ -138,7 +142,7 @@ NTP synchronized: no
 带有 + 表示可用作备选服务器
 
 
-# 客户端同步定时任务
+### 6. 客户端同步定时任务
 ```shell
 vim /etc/crontab
 

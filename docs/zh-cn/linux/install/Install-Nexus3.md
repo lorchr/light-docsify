@@ -1,4 +1,4 @@
-# 五、 安装 Nexus3
+## 1. 安装 Nexus3
 
 - https://www.sonatype.com/download-oss-sonatype
 - https://help.sonatype.com/repomanager3/product-information/system-requirements#SystemRequirements-Linux

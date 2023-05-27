@@ -1,4 +1,4 @@
-# 三、 安装 Maven
+## 3. 安装 Maven
 
 - https://maven.apache.org/download.cgi
 

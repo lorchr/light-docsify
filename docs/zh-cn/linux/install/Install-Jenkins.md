@@ -8,11 +8,11 @@
 | 6    | Nexus    | 192.168.137.102 | 18081/18082/18083 | http://192.168.137.102:18081/           |
 
 
-# 六、 安装 Jenkins
+## 1. 安装 Jenkins
 
 - https://jenkins.io/zh/doc/
 
-## 1. 安装
+### 1. 安装
 
 ```shell
 # 查看已有的jenkins
@@ -58,7 +58,7 @@ systemctl daemon-reload && systemctl start jenkins
 登录web页面：http://192.168.137.101:18080
 - admin/admin
 
-## 2. 初始化配置 Jenkins
+### 2. 初始化配置 Jenkins
 
 这里登录需要使用到一个管理员密码，我们可以在服务器上使用如下命令获得
 
@@ -106,7 +106,7 @@ systemctl daemon-reload && systemctl start jenkins
 yum install -y curl policycoreutils-python openssh-server
 ```
 
-## 3. 安装问题
+### 3. 安装问题
 
 1. 更新版本
 
@@ -160,9 +160,9 @@ sed -i 's/http:\/\/www.google.com/http:\/\/www.baidu.com/g' default.json
 
 > systemctl daemon-reload && systemctl restart jenkins
 
-## 4. 创建构建任务
+### 4. 创建构建任务
 
-### 1. 后端打包任务
+#### 1. 后端打包任务
 1. 创建任务`New Item`，输入任务名称，选择`构建一个Maven项目`，点击确认
 2. 描述中输入任务的描述信息: "Spring Boot打包测试"
 3. 点击顶部`源码管理`选择 `Git`。
@@ -175,7 +175,7 @@ sed -i 's/http:\/\/www.google.com/http:\/\/www.baidu.com/g' default.json
 10. `Build`中指定当前构建的项目。POM `pd-service-admin/pom.xml` Goals `clean install -Dmaven.test.skip=true`
 11. `Post Steps`添加`Execute Shell`执行后续Shell脚本。选择 `Run only if build succeeds`仅当build成功执行
 
-### 2. 后端打包脚本
+#### 2. 后端打包脚本
 
 ```shell
 # 定义变量
@@ -250,7 +250,7 @@ echo '================删除Dockerfile=============='
 rm -f Dockerfile
 ```
 
-### 3. 前端打包任务
+#### 3. 前端打包任务
 1. 创建任务`New Item`，输入任务名称，选择`Freestyle project`，点击确认
 2. 描述中输入任务的描述信息: "Web前端打包测试"
 3. 点击顶部`源码管理`选择 `Git`。
@@ -262,7 +262,7 @@ rm -f Dockerfile
 9. `构建环境`选择`Provide Node & npm bin/ folder to PATH`指定使用的Node npm的位置
 10. `Build`添加`Execute Shell`执行后续Shell脚本。选择 `Run only if build succeeds`仅当build成功执行
 
-### 4. 前端打包脚本
+#### 4. 前端打包脚本
 
 ```shell
 # 查看Node和NPM版本

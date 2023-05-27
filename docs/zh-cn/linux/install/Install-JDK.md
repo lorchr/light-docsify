@@ -1,4 +1,4 @@
-# 一、 安装 JDK
+## 1. 安装 JDK
 
 - https://www.oracle.com/java/technologies/oracle-java-archive-downloads.html
 - https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html#license-lightbox

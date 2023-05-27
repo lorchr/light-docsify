@@ -1,6 +1,4 @@
-# Docsite Usage
-
-## 一、安装
+## 1. 安装
 
 - [Docsite官网](https://docsite.js.org)
 - [Docsite Github](https://github.com/txd-team/docsite)
@@ -8,7 +6,7 @@
 - [Valine官网](https://valine.js.org)
 
 ```shell
-# node版本需要 > 6.x
+# node版本需要 > 6.x  <= 10.x
 node -v
 npm -v
 
@@ -16,7 +14,7 @@ npm -v
 npm install -g docsite
 ```
 
-## 二、运行
+## 2. 运行
 ```shell
 # 初始化项目
 docsite init <project_name>
@@ -33,7 +31,7 @@ docsite start
 docsite build
 ```
 
-## 三、配置
+## 3. 配置
 ### 1. 修改网站路由搜索引擎 `site.js`
 
 ```shell
@@ -97,7 +95,7 @@ pages:
    description: 'page description'
 ```
 
-## 四、使用-文档
+## 4. 使用-文档
 1. 在`docs/zh-cn`目录下新建一个文件`Docsite-Usage.md`，并书写内容
 2. 将该文件复制到`docs/en-us`目录下
 3. 配置该文档到待生成的网页中`site_config/docs.js`
@@ -137,11 +135,11 @@ pages:
 ```
 4. 再次运行`docsite start`
 
-## 五、使用-博客
+## 5. 使用-博客
 
-## 六、使用-社区
+## 6. 使用-社区
 
-## 七、部署
+## 7. 部署
 
 将生成的文档推送到新分支上
 ```shell
@@ -271,4 +269,5 @@ jobs:
 4. 推送代码
 5. 在`Actions`中查看执行的结果
 
-### Gitee Pages
+### 3. 部署到Gitee Pages
+需要上传身份证进行认证，跳过

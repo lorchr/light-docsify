@@ -1,6 +1,6 @@
 [使用Rancher搭建K8s集群](https://blog.csdn.net/cqconelin/article/details/130056661)
 
-# 一、集群配置
+## 1. 集群配置
 - Rancher version: 2.6.3
 - Server:
 
@@ -11,7 +11,7 @@
 | k8s-node-2 | 16 Core | 16G    | 80G  | CentOS 7.5 |
 
 
-# 二、环境初始化
+## 2. 环境初始化
 1. 将桥接的IPv4流量传递到iptables的链，并修改 `/etc/sysctl.conf`
     ```shell
     # 修改/etc/sysctl.conf
@@ -50,7 +50,7 @@
     hostnamectl set-hostname k8s-master
     bash
     ```
-# 三、Docker安装
+## 3. Docker安装
 1. 删除已存在的Docker
     ```shell
     yum remove docker \
@@ -123,7 +123,7 @@
     docker run hello-world
     ```
 
-# 四、启动Rancher
+## 4. 启动Rancher
 1. 启动rancher
     启动时需要添加 `--privileged` 参数
     ```shell
@@ -146,7 +146,7 @@
     https://rancherIp:7643
     ```
 
-# 五、K8s集群管理
+## 5. K8s集群管理
 1. 添加一个K8s集群
 2. 选择自定义
 3. 编写集群信息
@@ -177,7 +177,7 @@
 | --node-name k8s-node-1 | --etcd --controlplane --worker |
 | --node-name k8s-node-2 | --etcd --controlplane --worker |
 
-# 六、Kubectl工具的安装
+## 6. Kubectl工具的安装
 这里是将kubectl工具安装在master上
 1. 安装wget
     ```

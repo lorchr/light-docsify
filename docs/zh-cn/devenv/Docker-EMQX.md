@@ -1,4 +1,6 @@
 [EMQX](https://hub.docker.com/_/emqx)
+
+## 1. Docker安装
 ```shell
 docker run -d \
   --publish 18083:18083 \
@@ -34,7 +36,7 @@ vim /etc/emqx/emqx.conf
 
 **注：** 使用环境变量修改默认配置只支持[Configuration Files](https://www.emqx.io/docs/en/v5.0/admin/cfg.html)列表中的属性，共享订阅的配置使用环境变量设置无效
 
-## 共享订阅
+## 2. 共享订阅
 - [共享订阅 - MQTT 5.0 新特性](https://www.emqx.com/en/blog/introduction-to-mqtt5-protocol-shared-subscription)
 - [MQTT核心概念-共享订阅](https://www.emqx.io/docs/en/v5.0/messaging/mqtt-concepts.html#shared-subscription)
 - [发布订阅-共享订阅](https://www.emqx.io/docs/en/v5.0/messaging/mqtt-shared-subscription.html)

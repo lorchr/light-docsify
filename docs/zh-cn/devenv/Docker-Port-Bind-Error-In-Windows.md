@@ -1,6 +1,6 @@
 Windows Docker 端口占用错误解决
 
-## 错误来源
+## 1. 错误来源
 
 ```
 Error invoking remote method ‘docker-start-container’: Error: (HTTP code 500) server error - Ports are not available: exposing port TCP 192.168.0.157:6555 -> 0.0.0.0:0: listen tcp 192.168.0.157:6555: can’t bind on the specified endpoint.
@@ -47,7 +47,7 @@ netsh int ipv4 show dynamicport tcp
 netsh int ipv4 show excludedportrange protocol=tcp
 ```
 
-## 解决方法
+## 2. 解决方法
 1. 直接重启
     一般重启后Hyper-V的端口分配bug会消除，自然问题也会消失，但这不一定，偶尔会出现重启也解决不了的情况
 
@@ -75,7 +75,7 @@ netsh int ipv4 show excludedportrange protocol=tcp
 
     这命令的实质是简化版的重启电脑，让 `Hyper-V` 初始化一些随机端口来保留，如果它仍然没有释放你所需要的端口，你可能需要再次操作。也就是因此，该回答下面有些人回复有用，有些人回复没用，就是因为这种解决方式解决问题的概率非常的随机。
 
-## 参考文献
+## 3. 参考文献
 1. [彻底解决docker在windows上的端口绑定问题](https://cloud.tencent.com/developer/article/2168217)
 
 2. [解决Windows下Docker启动容器时，端口被占用错误](https://www.cnblogs.com/uncmd/p/16056993.html)

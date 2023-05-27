@@ -1,11 +1,11 @@
-![logo](https://docsify.js.org/_media/icon.svg)
+![logo](/icon.svg)
 # Torch
 > Torch, Light the world!
 
-* Java相关：jdk、jvm、
-* 框架技术：spring、mybatis
-* 中间件：es、mq、redis
-* 数据库技术：mysql
+- Java相关：JDK JVM
+- 框架技术：Spring Mybatis
+- 中间件：ES MQ Redis
+- 数据库技术：Mysql PostgreSQL
 
 [Get Started](README.md)
 [GitHub](https://github.com/lorch/light-docsify)

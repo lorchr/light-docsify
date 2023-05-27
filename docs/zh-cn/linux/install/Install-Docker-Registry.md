@@ -1,4 +1,4 @@
-# 七、 安装 Docker Registry私服
+## 1. 安装 Docker Registry私服
 
 这是最简洁最原始的方式，使用docker官方的提供的registry来搭建私服。优点是纯净、简洁，缺点是没有可视化界面、没有权限验证模块。
 

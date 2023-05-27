@@ -1,5 +1,6 @@
 [Mysql](https://hub.docker.com/_/mysql)
-## Mysql 5.7
+
+## 1. Docker安装Mysql 5.7
 ```shell
 docker run -d \
   --publish 3306:3306 \
@@ -26,10 +27,10 @@ docker container restart mysql5
 ```
 
 - Account
-  root/admin
-  light/light
+  - root/admin
+  - light/light
 
-## Mysql 8.0
+## 2. Docker安装Mysql 8.0
 ```shell
 docker run -d \
   --publish 3308:3308 \
@@ -56,10 +57,10 @@ docker container restart mysql8
 ```
 
 - Account
-  root/admin
-  light/light
+  - root/admin
+  - light/light
 
-## 配置
+## 3. 配置
 ```shell
 vim /etc/mysql/conf.d/mysql.cnf
 ```
