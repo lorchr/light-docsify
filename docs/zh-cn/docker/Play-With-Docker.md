@@ -20,7 +20,7 @@ ssh ip172-18-0-30-chpi3h89ec4g00esojfg@direct.labs.play-with-docker.com
 ## 3. 安装Mysql镜像
 
 ```shell
-docker run -d \
+docker run --detach \
   --publish 3306:3306 \
   --env MYSQL_ROOT_PASSWORD=admin \
   --env MYSQL_DATABASE=light \
@@ -57,7 +57,7 @@ docker stop mysql && docker rm mysql
 
 ## 6. 安装Nginx
 ```shell
-docker run -d \
+docker run --detach \
     --publish 8080:80 \
     --volume /root/nginx.conf:/etc/nginx/nginx.conf:ro \
     --volume /root/html:/usr/share/nginx/html \

@@ -15,13 +15,37 @@ docker run -d \
   --name redisinsight \
   redislabs/redisinsight:1.14.0
 
+# 挂载配置文件 http://download.redis.io/redis-stable/redis.conf
+wget https://raw.githubusercontent.com/redis/redis/6.2/redis.conf -O ./redis.conf
+
+vim ./redis.conf
+
+docker run -d \
+  --publish 6378:6379 \
+  --volume //d/develop/docker/redis.conf:/etc/redis/redis.conf \
+  --restart=no \
+  --name redis2 \
+  redis:6.2 redis-server /etc/redis/redis.conf
+
+# 启动时指定密码
+docker run -d \
+  --publish 6379:6379 \
+  --restart=no \
+  --name redis \
+  redis:6.2 --requirepass "admin"
+
 docker exec -it -u root redis /bin/bash
 
-wget https://raw.githubusercontent.com/redis/redis/6.2/redis.conf -O /usr/local/etc/redis/redis.conf
+# redis-cli 设置密码
+cd /usr/local/bin
 
-vim /usr/local/etc/redis/redis.conf
+redis-cli
+config get requirepass
+config set requirepass "admin"
 
 docker container restart redis
+
+docker cp redis:/usr/local/bin/redis.conf ./redis.conf
 ```
 
 - Account
@@ -57,7 +81,7 @@ databases 8
 ##指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合
 #save <seconds> <changes>
 #Redis默认配置文件中提供了三个条件：
-save 900 1
+save 3600 1
 save 300 10
 save 60 10000
 #指定存储至本地数据库时是否压缩数据，默认为yes，Redis采用LZF压缩，如果为了节省CPU时间，
