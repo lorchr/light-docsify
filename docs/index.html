@@ -19,6 +19,22 @@
 </head>
 <body>
   <div id="app"></div>
+
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!--emoji-->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <!--图片缩放-->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <!-- 搜索插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!--复制到剪切板-->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- 分页导航 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+  <!-- 在Github编辑此页面 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
+
   <script>
     window.$docsify = {
       name: 'light-docsify',
@@ -27,6 +43,8 @@
       // basePath: "/",
       // 部署到Github Pages
       basePath: "https://lorchr.github.io/light-docsify/",
+      // 更改路由时自动滚动到屏幕顶部
+      auto2top: true,
       // 加载 _sidebar.md 侧边导航栏 
       loadSidebar: true,
       maxLevel: 2, // 默认情况下会抓取文档中所有标题渲染成目录，可配置最大支持渲染的标题层级。
@@ -63,20 +81,22 @@
       // 设置路由模式，默认为hash， 
       // 设置为 history 后，浏览器链接里不会出现 #，可能会对 SEO 更友好，
       routerMode: 'history',
+      plugins: [
+        EditOnGithubPlugin.create(
+          'https://github.com/lorchr/light-docsify/blob/main/docs',
+          null,
+          function(file) {
+            console.log(file)
+            if (file.indexOf('en') === -1) {
+              return '编辑此页'
+            } else {
+              return 'Edit Document'
+            }
+          }
+        )
+      ]
     }
   </script>
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <!--emoji-->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
-  <!--图片缩放-->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-  <!-- 搜索插件 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <!--复制到剪切板-->
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-  <!-- 分页导航 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
   <!-- 代码高亮 -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-http.min.js"></script>
@@ -88,7 +108,6 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-shell-session.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-xml-doc.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
-
   <script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js" type="text/javascript"></script>
 </body>
 </html>
