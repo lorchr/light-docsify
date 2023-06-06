@@ -6,28 +6,30 @@
 # 2. Ntp Time Sync
 [Ntp Time Sync](linux/common/Ntp-Time-Sync.md ':include')
 
+# 3. Linux Command
+[Linux Command](linux/common/Linux-Command.md ':include')
 
 
-# 3. Install JDK
+# 11. Install JDK
 [Install Docker Registry](linux/install/Install-JDK.md ':include')
 
-# 4. Install NodeJS
+# 12. Install NodeJS
 [Install Docker Registry](linux/install/Install-NodeJS.md ':include')
 
-# 5. Install Maven
+# 13. Install Maven
 [Install Docker Registry](linux/install/Install-Maven.md ':include')
 
-# 6. Install Gitea
+# 14. Install Gitea
 [Install Docker Registry](linux/install/Install-Gitea.md ':include')
 
-# 7. Install Nexus3
+# 15. Install Nexus3
 [Install Docker Registry](linux/install/Install-Nexus3.md ':include')
 
-# 8. Install Jenkins
+# 16. Install Jenkins
 [Install Docker Registry](linux/install/Install-Jenkins.md ':include')
 
-# 9. Install Harbor
+# 17. Install Harbor
 [Install Docker Registry](linux/install/Install-Harbor.md ':include')
 
-# 10. Install Docker Registry
+# 18. Install Docker Registry
 [Install Docker Registry](linux/install/Install-Docker-Registry.md ':include')

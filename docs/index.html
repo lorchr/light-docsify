@@ -6,15 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> -->
-  <!-- 主题 -->
-  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css"> -->
-  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css"> -->
-  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/pure.css"> -->
-  <!-- https://docsify-darklight-theme.boopathikumar.me/#/installation -->
-  <!-- https://osiris-ui.github.io/osiris/#/quick-start -->
-
+  <!-- 官方主题 -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css"> -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/buble.css"> -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/dark.css"> -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/pure.css"> -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/dolphin.css"> -->
+  <!-- https://github.com/boopathikumar018/docsify-darklight-theme -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css" title="docsify-darklight-theme" type="text/css" />
+  <!-- https://github.com/jhildenbiddle/docsify-themeable -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css"> -->
 </head>
 <body>
   <div id="app"></div>
@@ -28,11 +29,12 @@
       basePath: "https://lorchr.github.io/light-docsify/",
       // 加载 _sidebar.md 侧边导航栏 
       loadSidebar: true,
-      maxLevel: 2,
-      subMaxLevel: 2,
+      maxLevel: 2, // 默认情况下会抓取文档中所有标题渲染成目录，可配置最大支持渲染的标题层级。
+      subMaxLevel: 2, // 生成目录的最大层级
+      mergeNavbar: true, // 小屏设备下合并导航栏到侧边栏
       alias: {
-        // '/.*/_sidebar.md': '/_sidebar.md', //防止意外回退
-        '/.*/_navbar.md': '/_navbar.md'    //防止意外回退
+        // '/.*/_sidebar.md': '/_sidebar.md', // 防止意外回退，多个文档目录独立的导航栏时，不需要此项
+        '/.*/_navbar.md': '/_navbar.md'    // 防止意外回退
       },
       // 加载 _navbar.md 顶部导航栏 
       loadNavbar: true,
@@ -50,7 +52,17 @@
         depth: 3,
         hideOtherSidebarContent: false,
         notice: 'Docsify-Guide'
-      }
+      },
+      // 分页导航，在文档的最下方会展示上一个文档和下一个文档。
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+        crossChapter: true,
+        crossChapterText: false,
+      },
+      // 设置路由模式，默认为hash， 
+      // 设置为 history 后，浏览器链接里不会出现 #，可能会对 SEO 更友好，
+      routerMode: 'history',
     }
   </script>
   <!-- Docsify v4 -->
@@ -63,6 +75,8 @@
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <!--复制到剪切板-->
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- 分页导航 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
   <!-- 代码高亮 -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-http.min.js"></script>

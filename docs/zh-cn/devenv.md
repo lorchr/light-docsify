@@ -33,16 +33,16 @@ GUID生成：https://www.guidgen.com/
 ## 2. Git
 ```shell
 
-git config --global user.name "liuhui"
-git config --global user.email "hliu@pisx.com"
+git config --global user.name "lorchr"
+git config --global user.email "lorchr@163.com"
 
-ssh-keygen -t rsa -C "hliu@pisx.com"
-cat /c/Users/pisx/.ssh/id_rsa.pub
+ssh-keygen -t rsa -C "lorchr@163.com"
+cat /c/Users/lorchr/.ssh/id_rsa.pub
 
 git init
 git add .
 git commit -m "Init project"
-git remote add origin https://gitee.com/lorchr/spring-boot-samples.git
+git remote add origin https://cloud.com/lorchr/spring-cloud-samples.git
 git branch --set-upstream-to=origin/master master
 git push -u origin master
 ```
