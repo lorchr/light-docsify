@@ -5,12 +5,14 @@
 ```shell
 docker run -d \
   --publish 6379:6379 \
+  --net dev \
   --restart=no \
   --name redis \
   redis:6.2
 
 docker run -d \
   --publish 38001:8001 \
+  --net dev \
   --restart=no \
   --name redisinsight \
   redislabs/redisinsight:1.14.0
@@ -23,6 +25,7 @@ vim ./redis.conf
 docker run -d \
   --publish 6378:6379 \
   --volume //d/develop/docker/redis.conf:/etc/redis/redis.conf \
+  --net dev \
   --restart=no \
   --name redis2 \
   redis:6.2 redis-server /etc/redis/redis.conf
@@ -30,6 +33,7 @@ docker run -d \
 # 启动时指定密码
 docker run -d \
   --publish 6379:6379 \
+  --net dev \
   --restart=no \
   --name redis \
   redis:6.2 --requirepass "admin"

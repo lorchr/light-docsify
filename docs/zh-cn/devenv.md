@@ -29,6 +29,45 @@ GUID生成：https://www.guidgen.com/
 
 2. MyBatisCodeHelper-Pro
 
+3. Translation - 必备的翻译插件
+4. CodeGlance - 缩略图
+5. Grep Console - 控制台日志 高亮
+6. String Manipulation -对字符串的处理
+7. GenerateAllSetter - 自动调用所有 Setter 函数（可填充默认值）
+8. Maven Helper - 方便maven项目解决jar冲突
+9. RestfulToolkit — 快捷跳转Action方法
+10. Free Mybatis Plugin , MybatisX
+11. EasyCode
+12. EasyYapi
+13. GeneratrSerialVersionUID
+14. JFormDesigner
+15. PlantUML Integration
+16. ResourceBundle Editor
+17. SonarAnalyzer
+18. TestMe
+19. UML Generator
+20. VisualVM Launcher
+
+21. CamelCase - 多种命名格式之间切换
+22. Presentation Assistant - 快捷键展示
+23. Key promoter X — 会有这个操作的快捷键在界面的右下角进行告知。
+24. Codota — 代码智能提示
+25. Alibaba Java Code Guidelines — 阿里巴巴 Java 代码规范
+26. Rainbow Brackets — 让你的括号变成不一样的颜色，防止错乱括号
+27. HighlightBracketPair — 括号开始结尾 高亮显示。
+28. google-java-format — 代码自动格式化
+29. Leetcode Editor - 可以在IDEA中在线刷题。
+30. Statistic — 项目信息统计
+31. jclasslib bytecode viewer - 查看字节码
+32. Auto filling Java call arguments - 自动补全参数
+33. GenerateO2O — 自动填充参数的值
+34. FindBugs — 检查代码中的隐患
+35. SonarLint — 检查代码中的隐患
+36. SequenceDiagram — 调用链路自动生成时序图
+37. Stack trace to UML — 根据 JVM 异常堆栈画 UML时序图和通信图
+38. Java Stream Debugger — Stream 将操作步骤可视化
+39. IDEA QAPlug - 帮助我们提前找到潜在的问题bug
+
 
 ## 2. Git
 ```shell
@@ -169,6 +208,18 @@ git pull 仓库别名 分支 --allow-unrelated-histories
     docker exec -it -u root <container-id(name)> /bin/bash
    ```
 
+4. 上传下载文件
+   
+   ```shell
+    # 上传
+    docker cp <local_file_path> <container-id(name)>:<container_path>
+    docker cp C://users/light/Desktop/elasticsearch-analysis-ik elasticsearch:/usr/share/elasticsearch/plugins/elasticsearch-analysis-ik
+
+    # 下载
+    docker cp <container-id(name)>:<container_path> <local_file_path>
+    docker cp elasticsearch:/usr/share/elasticsearch/plugins/elasticsearch-analysis-ik C://users/light/Desktop/elasticsearch-analysis-ik
+   ```
+
 # 3. Mysql
 [Mysql](devenv/Docker-Mysql.md ':include')
 
@@ -184,5 +235,8 @@ git pull 仓库别名 分支 --allow-unrelated-histories
 # 7. EMQX
 [EMQX](devenv/Docker-EMQX.md ':include')
 
-# 8. Windows下Docker端口被占用的问题
+# 8. Elasticsearch
+[Elasticsearch](devenv/Docker-Elasticsearch.md ':include')
+
+# 9. Windows下Docker端口被占用的问题
 [Docker port bind error in Windows](devenv/Docker-Port-Bind-Error-In-Windows.md ':include')

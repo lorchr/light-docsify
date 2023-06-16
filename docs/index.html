@@ -58,6 +58,9 @@
       loadNavbar: true,
       // 加载 _coverpage.md 首页封面
       coverpage: true,
+      // 设置路由模式，默认为hash， 
+      // 设置为 history 后，浏览器链接里不会出现 #，可能会对 SEO 更友好，
+      routerMode: 'history',
       // 搜索插件配置
       search: {
         maxAge: 86400000,     // 过期时间 ms，默认一天
@@ -78,9 +81,6 @@
         crossChapter: true,
         crossChapterText: false,
       },
-      // 设置路由模式，默认为hash， 
-      // 设置为 history 后，浏览器链接里不会出现 #，可能会对 SEO 更友好，
-      routerMode: 'history',
       plugins: [
         EditOnGithubPlugin.create(
           'https://github.com/lorchr/light-docsify/blob/main/docs',

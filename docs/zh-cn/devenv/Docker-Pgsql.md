@@ -5,6 +5,7 @@
 docker run -d \
   --publish 5432:5432 \
   --env POSTGRES_PASSWORD=postgres \
+  --net dev \
   --restart=no \
   --name postgres \
   postgres:12.11

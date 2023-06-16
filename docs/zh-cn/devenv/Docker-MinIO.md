@@ -8,6 +8,7 @@ docker run -d \
   --publish 9001:9001 \
   --env MINIO_ROOT_USER=minioaccess \
   --env MINIO_ROOT_PASSWORD=miniosecret \
+  --net dev \
   --restart=on-failure:3 \
   --name minio \
   minio/minio:RELEASE.2023-05-18T00-05-36Z server /data --console-address ":9001"
@@ -22,6 +23,7 @@ docker run -d \
   --env MINIO_ROOT_USER=minioaccess \
   --env MINIO_ROOT_PASSWORD=miniosecret \
   --env MINIO_SERVER_URL=http://minio.example.net:9000\
+  --net dev \
   --restart=on-failure:3 \
   --name minio \
   minio/minio:RELEASE.2023-05-18T00-05-36Z server /data --console-address ":9001"

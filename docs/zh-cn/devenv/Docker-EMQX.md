@@ -2,6 +2,9 @@
 
 ## 1. Docker安装
 ```shell
+# 创建Network
+docker network create dev
+
 docker run -d \
   --publish 18083:18083 \
   --publish 1883:1883 \
@@ -10,6 +13,7 @@ docker run -d \
   --env DEV_EMQX_ZONE__EXTERNAL__SHARED_SUBSCRIPTION=true \
   --env DEV_EMQX_BROKER__SHARED_SUBSCRIPTION_STRATEGY=round_robin \
   --env DEV_EMQX_BROKER__SHARED_DISPATCH_ACK_ENABLE=true \
+  --net dev \
   --restart=no \
   --name emqx \
   emqx:4.3
@@ -21,6 +25,7 @@ docker run -d \
   --env EMQX_ZONE__EXTERNAL__SHARED_SUBSCRIPTION=true \
   --env EMQX_BROKER__SHARED_SUBSCRIPTION_STRATEGY=round_robin \
   --env EMQX_BROKER__SHARED_DISPATCH_ACK_ENABLE=true \
+  --net dev \
   --restart=no \
   --name emqx2 \
   emqx:4.3

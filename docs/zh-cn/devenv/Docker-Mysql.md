@@ -8,6 +8,7 @@ docker run -d \
   --env MYSQL_DATABASE=light \
   --env MYSQL_USER=light \
   --env MYSQL_PASSWORD=light \
+  --net dev \
   --restart=on-failure:3 \
   --name mysql5 \
   mysql:5.7
@@ -38,6 +39,7 @@ docker run -d \
   --env MYSQL_DATABASE=light \
   --env MYSQL_USER=light \
   --env MYSQL_PASSWORD=light \
+  --net dev \
   --restart=on-failure:3 \
   --name mysql8 \
   mysql:8.0

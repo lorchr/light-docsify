@@ -75,7 +75,7 @@ netsh int ipv4 show excludedportrange protocol=tcp
 
     这命令的实质是简化版的重启电脑，让 `Hyper-V` 初始化一些随机端口来保留，如果它仍然没有释放你所需要的端口，你可能需要再次操作。也就是因此，该回答下面有些人回复有用，有些人回复没用，就是因为这种解决方式解决问题的概率非常的随机。
 
-## 3. 参考文献
+## 3. 参考文章
 1. [彻底解决docker在windows上的端口绑定问题](https://cloud.tencent.com/developer/article/2168217)
 
 2. [解决Windows下Docker启动容器时，端口被占用错误](https://www.cnblogs.com/uncmd/p/16056993.html)
