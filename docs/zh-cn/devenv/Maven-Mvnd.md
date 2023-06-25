@@ -86,8 +86,8 @@
     # 查看版本
     mvn -v
 
-    # 打包安装到本地
-    mvn clean package
+    # 打包
+    mvn clean -U -Dmaven.test.skip=true package
 
     # 打包安装到本地
     mvn clean package -T 1C -Dmaven.test.skip=true  -Dmaven.compile.fork=true
@@ -129,6 +129,10 @@
 
     # 查看版本
     mvnd -v
+
+    # 打包
+    mvnd clean -U -Dmaven.test.skip=true package        # 并行
+    mvnd clean -U -Dmaven.test.skip=true package -T1    # 串行
 
     # 打包安装到本地
     mvnd clean install -Dquickly
