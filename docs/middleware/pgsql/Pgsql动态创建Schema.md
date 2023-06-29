@@ -119,3 +119,44 @@ GROUP BY nspname;
 ```
 在这个示例中，我们使用 WHERE 子句指定了条件 nspname = 'your_schema_name'，以筛选出
 特定 schema 的信息。请将 your_schema_name 替换为您要查询的 schema 名称。
+
+```sql
+# 切换schema
+SET SEARCH_PATH to public;
+
+# 创建测试表
+CREATE TABLE test_user (
+    id int8 NOT NULL ,
+    name varchar(32) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+# 初始化数据
+INSERT INTO test_user (id, "name") VALUES (1, 'zhangsan'),(2, 'lisi');
+
+# 创建schema
+CREATE SCHEMA test_schema;
+
+# 切换schema
+SET SEARCH_PATH to test_schema;
+
+# 创建测试表
+CREATE TABLE test_user (
+    id int8 NOT NULL ,
+    name varchar(32) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+# 初始化数据
+INSERT INTO test_user (id, "name") VALUES (10, 'zhangsan'),(20, 'lisi');
+
+# 查询数据 切换schema
+SET SEARCH_PATH to test_schema;
+SELECT * FROM test_user su WHERE name = 'zhangsan';
+SET SEARCH_PATH to public;
+SELECT * FROM test_user su WHERE name = 'zhangsan';
+
+# 查询数据 表名携带schema schema.table
+SELECT * FROM test_schema.test_user su WHERE name = 'zhangsan';
+SELECT * FROM public.test_user su WHERE name = 'zhangsan';
+```

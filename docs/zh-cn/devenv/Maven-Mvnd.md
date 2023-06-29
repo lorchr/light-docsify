@@ -131,6 +131,7 @@
     mvnd -v
 
     # 打包
+    mvnd -Dmaven.compiler.release=8 compile             # 指定jdk版本
     mvnd clean -U -Dmaven.test.skip=true package        # 并行
     mvnd clean -U -Dmaven.test.skip=true package -T1    # 串行
 
