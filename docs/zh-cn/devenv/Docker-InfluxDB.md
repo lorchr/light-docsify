@@ -1,33 +1,34 @@
-[InfluxDB](https://hub.docker.com/_/influxdb)
+- [InfluxDB Offical](https://www.influxdata.com)
+- [InfluxDB Offical Docker](https://docs.influxdata.com/influxdb/v2.0/install/?t=Docker)
+- [InfluxDB Docker](https://hub.docker.com/_/influxdb)
 
 ## 1. Docker安装
 ```shell
+# 创建Network
+docker network create dev
+
+# 创建数据卷
+docker volume create influx_data;
+
+# docker run -i --rm influxdb:1.8 influxd config > D:/docker/influxdb/conf/influxdb.conf
+
+# 获取默认配置文件
+docker run -d --name influxdb_temp influxdb:1.8 \
+&& docker exec -it influxdb_temp influxd config /etc/influxdb/influxdb.conf \
+&& docker cp influxdb_temp:/etc/influxdb/influxdb.conf D:/docker/influxdb/conf/influxdb.conf \
+&& docker stop influxdb_temp && docker rm influxdb_temp
+
+# 运行容器
 docker run -d \
   --publish 8086:8086 \
+  --volume //d/docker/influxdb/data:/var/lib/influxdb \
+  --volume //d/docker/influxdb/conf/influxdb.conf:/etc/influxdb/influxdb.conf:ro \
   --env DOCKER_INFLUXDB_INIT_USERNAME=admin \
   --env DOCKER_INFLUXDB_INIT_PASSWORD=admin@123 \
   --net dev \
   --restart=no \
   --name influxdb \
-  influxdb:1.8
-
-docker run -d \
-  --publish 8087:8086 \
-  --env DOCKER_INFLUXDB_INIT_USERNAME=admin \
-  --env DOCKER_INFLUXDB_INIT_PASSWORD=admin@123 \
-  --net dev \
-  --restart=no \
-  --name influxdb1.7.8 \
-  influxdb:1.7
-
-docker run -d \
-  --publish 8088:8086 \
-  --env DOCKER_INFLUXDB_INIT_USERNAME=admin \
-  --env DOCKER_INFLUXDB_INIT_PASSWORD=admin@123 \
-  --net dev \
-  --restart=no \
-  --name influxdb1.8.4 \
-  influxdb:1.8.4
+  influxdb:1.8 -config /etc/influxdb/influxdb.conf
 
 docker exec -it -u root influxdb /bin/bash
 
@@ -36,10 +37,12 @@ apt update && apt-get install -y vim
 
 vim /etc/influxdb/influxdb.conf
 [http]
+  enable=true
   auth-enable=true
 
 cat << EOF >> /etc/influxdb/influxdb.conf
 [http]
+  enable=true
   auth-enable=true
 EOF
 
@@ -214,13 +217,11 @@ influxd restore [ -db <db_name> ] # 待恢复的数据库(备份中的数据库�
   如果想将备份恢复到一个已经存在的database中时，并不是那么简单的，这里采用的一个策略是
   先备份到一个临时的db中，然后将临时DB中的数据写入已存在的db中。
     ```shell
-    #1. 将备份恢复到临时数据库example-tmp-db中
-    influxd restore -portable -db example-db -newdb example-tmp-db /path/to/backup-direct
-    ory
-    #2. 登录连接influx客户端，从临时数据库查询数据，并将其写回现有数据库test中
-    SELECT * INTO "test".autogen.:MEASUREMENT FROM "example-tmp-db".autogen./.*/ GROUP BY
-    *
-    #3. 删除临时数据库example-tmp-db
+    # 1. 将备份恢复到临时数据库example-tmp-db中
+    influxd restore -portable -db example-db -newdb example-tmp-db /path/to/backup-directory
+    # 2. 登录连接influx客户端，从临时数据库查询数据，并将其写回现有数据库test中
+    SELECT * INTO "test".autogen.:MEASUREMENT FROM "example-tmp-db".autogen./.*/ GROUP BY *
+    # 3. 删除临时数据库example-tmp-db
     DROP DATABASE "example-tmp-db"
     ```
 5. 恢复指定的保留策略

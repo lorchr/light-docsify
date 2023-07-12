@@ -1,8 +1,16 @@
-- [Redis](https://hub.docker.com/_/redis)
-- [RedisInsight](https://hub.docker.com/r/redislabs/redisinsight)
+- [Redis Offical](https://redis.io/)
+- [Redis Docker](https://hub.docker.com/_/redis)
+- [RedisInsight Docker](https://hub.docker.com/r/redislabs/redisinsight)
 
 ## 1. Docker安装
 ```shell
+# 创建Network
+docker network create dev
+
+# 获取默认配置文件 http://download.redis.io/redis-stable/redis.conf
+curl https://raw.githubusercontent.com/redis/redis/6.2/redis.conf -o D:/docker/redis/conf/redis.conf
+
+# 运行容器
 docker run -d \
   --publish 6379:6379 \
   --net dev \
@@ -17,17 +25,14 @@ docker run -d \
   --name redisinsight \
   redislabs/redisinsight:1.14.0
 
-# 挂载配置文件 http://download.redis.io/redis-stable/redis.conf
-wget https://raw.githubusercontent.com/redis/redis/6.2/redis.conf -O ./redis.conf
-
 vim ./redis.conf
 
 docker run -d \
-  --publish 6378:6379 \
-  --volume //d/develop/docker/redis.conf:/etc/redis/redis.conf \
+  --publish 6379:6379 \
+  --volume //d/docker/redis/conf/redis.conf:/etc/redis/redis.conf \
   --net dev \
   --restart=no \
-  --name redis2 \
+  --name redis \
   redis:6.2 redis-server /etc/redis/redis.conf
 
 # 启动时指定密码

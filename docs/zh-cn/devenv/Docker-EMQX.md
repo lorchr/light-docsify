@@ -1,13 +1,21 @@
-[EMQX](https://hub.docker.com/_/emqx)
+[EMQX Offical](https://www.emqx.io/)
+[EMQX Offical Docker](https://www.emqx.io/docs/en/v4.4/getting-started/install.html#running-emqx-in-docker-contain-a-simple-docker-compose-cluster)
+[EMQX Docker](https://hub.docker.com/_/emqx)
 
 ## 1. Docker安装
 ```shell
 # 创建Network
 docker network create dev
 
+# 创建数据卷
+docker volume create emqx_data
+
 docker run -d \
   --publish 18083:18083 \
   --publish 1883:1883 \
+  --volume //d/docker/emqx/data:/opt/emqx/data \
+  --volume //d/docker/emqx/conf:/opt/emqx/etc \
+  --volume //d/docker/emqx/log:/opt/emqx/log \
   --env HOCON_ENV_OVERRIDE_PREFIX=DEV_ \
   --env DEV_EMQX_MQTT__SHARED_SUBSCRIPTION=true \
   --env DEV_EMQX_ZONE__EXTERNAL__SHARED_SUBSCRIPTION=true \
@@ -21,6 +29,9 @@ docker run -d \
 docker run -d \
   --publish 18084:18083 \
   --publish 1884:1883 \
+  --volume //d/docker/emqx/data:/opt/emqx/data \
+  --volume //d/docker/emqx/conf:/opt/emqx/etc \
+  --volume //d/docker/emqx/log:/opt/emqx/log \
   --env EMQX_MQTT__SHARED_SUBSCRIPTION=true \
   --env EMQX_ZONE__EXTERNAL__SHARED_SUBSCRIPTION=true \
   --env EMQX_BROKER__SHARED_SUBSCRIPTION_STRATEGY=round_robin \

@@ -1,5 +1,6 @@
+- [Elasticsearch Offical Docker](https://www.elastic.co)
+- [Elasticsearch Offical Docker](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/docker.html)
 - [Elasticsearch](https://hub.docker.com/_/elasticsearch)
-- [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/docker.html)
 
 ## 1. 安装Elasticsearch
 
@@ -7,11 +8,23 @@
 # 创建Network
 docker network create dev
 
+# 创建数据卷
+docker volume create es_data;
+
+# 获取默认配置文件
+docker run -d --name elasticsearch_temp elasticsearch:7.17.10 \
+&& docker cp elasticsearch_temp:/usr/share/elasticsearch/config/elasticsearch.yml D:/docker/elasticsearch/conf/elasticsearch.yml \
+&& docker stop elasticsearch_temp && docker rm elasticsearch_temp
+
+
 # 运行镜像 Docker官方镜像
 docker run -d \
   --publish 9200:9200 \
   --publish 9300:9300 \
+  --volume //d/docker/elasticsearch/data:/usr/share/elasticsearch/data \
+  --volume //d/docker/elasticsearch/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \
   --env "discovery.type=single-node" \
+  --env ELASTIC_PASSWORD_FILE=/run/secrets/bootstrapPassword.txt \
   --net dev \
   --restart=no \
   --name elasticsearch \
@@ -21,8 +34,10 @@ docker run -d \
 docker run -d \
   --publish 9200:9200 \
   --publish 9300:9300 \
+  --volume //d/docker/elasticsearch/data:/usr/share/elasticsearch/data \
+  --volume //d/docker/elasticsearch/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \
   --env "discovery.type=single-node" \
-  --env ELASTIC_PASSWORD_FILE=/run/secrets/bootstrapPassword.txt
+  --env ELASTIC_PASSWORD_FILE=/run/secrets/bootstrapPassword.txt \
   --net dev \
   --restart=no \
   --name elasticsearch \

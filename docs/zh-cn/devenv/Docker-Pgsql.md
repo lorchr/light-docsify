@@ -1,14 +1,32 @@
-[Postgres](https://hub.docker.com/_/postgres)
+- [Postgres Offical](https://www.postgresql.org/)
+- [Postgres Docker](https://hub.docker.com/_/postgres)
 
 ## 1. Docker安装
 ```shell
+# 创建Network
+docker network create dev
+
+# 创建数据卷
+docker volume create pgsql_data;
+
+# docker run -i --rm postgres cat /usr/share/postgresql/postgresql.conf.sample >  D:/docker/pgsql/conf/postgresql.conf
+
+# 获取默认配置文件
+docker run -d --name postgres_temp postgres:15.3 \
+&& docker cp postgres_temp:/usr/share/postgresql/postgresql.conf.sample D:/docker/pgsql/conf/postgresql.conf \
+&& docker stop postgres_temp && docker rm postgres_temp
+
+# 运行容器
 docker run -d \
   --publish 5432:5432 \
+	--volume //d/docker/pgsql/data:/var/lib/postgresql/data \
+	--volume //d/docker/pgsql/conf/postgresql.conf:/etc/postgresql/postgresql.conf:ro \
+  --env PGDATA=/var/lib/postgresql/data \
   --env POSTGRES_PASSWORD=postgres \
   --net dev \
   --restart=no \
   --name postgres \
-  postgres:12.11
+  postgres:15.3
 
 docker exec -it -u root postgres /bin/bash
 

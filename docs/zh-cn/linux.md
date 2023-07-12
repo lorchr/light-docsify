@@ -9,6 +9,8 @@
 # 3. Linux Command
 [Linux Command](linux/common/Linux-Command.md ':include')
 
+# 4. Linux Command2
+[Linux Command2](linux/common/Linux-Command2.md ':include')
 
 # 11. Install JDK
 [Install Docker Registry](linux/install/Install-JDK.md ':include')
