@@ -42,7 +42,7 @@
       // 本地运行调试
       basePath: "/",
       // 部署到Github Pages
-      // basePath: "https://lorchr.github.io/light-docsify/",
+      // basePath: "https://lorchr.github.io/light-docsify",
       // 更改路由时自动滚动到屏幕顶部
       auto2top: true,
       // 加载 _sidebar.md 侧边导航栏 
@@ -60,7 +60,8 @@
       coverpage: true,
       // 设置路由模式，默认为hash， 
       // 设置为 history 后，浏览器链接里不会出现 #，可能会对 SEO 更友好，
-      routerMode: 'history',
+      // Note: routerMode 设置为 'history' 存在bug，导致访问路径错误，页面丢失
+      // routerMode: 'history',
       // 搜索插件配置
       search: {
         maxAge: 86400000,     // 过期时间 ms，默认一天
