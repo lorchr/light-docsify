@@ -49,6 +49,7 @@ vim /etc/emqx/emqx.conf
 
 - [Dashboard](http://localhost:18083)
   - admin/public
+- [MQTTX](https://mqttx.app/zh/downloads)
 
 **注：** 使用环境变量修改默认配置只支持[Configuration Files](https://www.emqx.io/docs/en/v5.0/admin/cfg.html)列表中的属性，共享订阅的配置使用环境变量设置无效
 
