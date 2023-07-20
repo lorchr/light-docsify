@@ -837,3 +837,13 @@ HTTPS 也不是绝对安全的，比如中间人劫持攻击，中间人可以�
 - controller 入参字段可以抽象出一个公共基类，在此基础上进行继承扩充
 - controller 层做好入参参数校验
 - 接口安全验证
+
+
+## 参考文章：
+
+- https://blog.csdn.net/xingfuzhijianxia/article/details/87623903
+- https://www.ithere.net/article/405
+- https://juejin.cn/post/6887019320666161165
+- http://learn.lianglianglee.com/
+
+> 版权声明：本文为CSDN博主「魅Lemon」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。原文链接：https://blog.csdn.net/lemon_TT/article/details/108309900
