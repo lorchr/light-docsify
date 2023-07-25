@@ -7,8 +7,10 @@
 docker run -d \
   --publish 9000:9000 \
   --publish 9001:9001 \
+  --volume //d/docker/minio/data:/data \
   --env MINIO_ROOT_USER=minioaccess \
   --env MINIO_ROOT_PASSWORD=miniosecret \
+  --env MINIO_SERVER_URL=http://minio.example.net:9000 \
   --net dev \
   --restart=on-failure:3 \
   --name minio \
@@ -21,17 +23,15 @@ docker network create dev
 docker volume create minio_data;
 
 # 获取默认配置文件
+# 见 https://min.io/docs/minio/container/operations/install-deploy-manage/deploy-minio-single-node-single-drive.html#id4
 
 # 运行容器
 docker run -d \
   --publish 9000:9000 \
   --publish 9001:9001 \
   --volume //d/docker/minio/data:/data \
-  --volume //d/docker/minio/conf:/etc/config.env \
-  --env MINIO_CONFIG_ENV_FILE=/etc/config.env \
-  --env MINIO_ROOT_USER=minioaccess \
-  --env MINIO_ROOT_PASSWORD=miniosecret \
-  --env MINIO_SERVER_URL=http://minio.example.net:9000\
+  --volume //d/docker/minio/conf/config.env:/etc/minio/config.env \
+  --env MINIO_CONFIG_ENV_FILE=/etc/minio/config.env \
   --net dev \
   --restart=on-failure:3 \
   --name minio \
@@ -47,15 +47,15 @@ docker container restart minio
 
 [Console Dashboard](http://localhost:9001)
 
-
+## config.env
 ```conf
 # MINIO_ROOT_USER and MINIO_ROOT_PASSWORD sets the root account for the MinIO server.
 # This user has unrestricted permissions to perform S3 and administrative API operations on any resource in the deployment.
 # Omit to use the default values 'minioadmin:minioadmin'.
 # MinIO recommends setting non-default values as a best practice, regardless of environment
 
-MINIO_ROOT_USER=myminioadmin
-MINIO_ROOT_PASSWORD=minio-secret-key-change-me
+MINIO_ROOT_USER=minioaccess
+MINIO_ROOT_PASSWORD=miniosecret
 
 # MINIO_VOLUMES sets the storage volume or path to use for the MinIO server.
 
@@ -66,5 +66,5 @@ MINIO_VOLUMES="/mnt/data"
 
 # Uncomment the following line and replace the value with the correct hostname for the local machine and port for the MinIO server (9000 by default).
 
-#MINIO_SERVER_URL="http://minio.example.net:9000"
+# MINIO_SERVER_URL="http://minio.example.net:9000"
 ```
