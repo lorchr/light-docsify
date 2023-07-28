@@ -14,5 +14,6 @@
   * [DIY](/diy/)
   * [Android](/diy/android/)
   * [NAS](/diy/nas/)
-  * [MiniPC](/diy/minpc/)
-  * [SoftRouter](/diy/soft-router/)
+  * [TV Box](/diy/tv-box/)
+  * [HA](/diy/ha/)
+  * [Soft Router](/diy/soft-router/)
