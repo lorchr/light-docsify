@@ -1,0 +1,2 @@
+- [红米2刷Mobian体验原生Linux及软件安装问题处理[ 手机刷LINUX系列]](https://zhuanlan.zhihu.com/p/554022195)
+- [红米2刷postmarketOS体验原生Linux(基于 Alpine Linux)[ 手机刷LINUX系列]](https://zhuanlan.zhihu.com/p/548346333)

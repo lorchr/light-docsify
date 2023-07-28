@@ -12,6 +12,9 @@
 # 4. Linux Command2
 [Linux Command2](linux/common/Linux-Command2.md ':include')
 
+# 5. Customize SSH Login Page
+[Customize SSH Login Page](linux/common/Customize-SSH-Login-Page.md ':include')
+
 # 11. Install JDK
 [Install Docker Registry](linux/install/Install-JDK.md ':include')
 

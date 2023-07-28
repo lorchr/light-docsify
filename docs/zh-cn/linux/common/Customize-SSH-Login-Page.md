@@ -1,6 +1,6 @@
 ## 自定义SSH登录页提示信息
 
-## 修改 /etc/ssh/sshd_config
+## 1. 修改 /etc/ssh/sshd_config
 1. 修改 `/etc/ssh/sshd_config` ，开启输出 `motd` 信息及 `banner` 信息
 
 ```shell
@@ -39,7 +39,7 @@ service sshd restart
 systemctl restart sshd
 ```
 
-## 修改 /etc/motd
+## 2. 修改 /etc/motd
 1. `system_status.sh`： 实时监控服务器状态的脚本。
 
 ```shell
@@ -135,6 +135,7 @@ chmod +x system_status.sh update_motd.sh send_email.sh send_wechat.sh
 最后，您可以通过定时任务工具如 `cron` 来定期运行监控脚本 `system_status.sh`，并在状态发生变化时调用发送邮件脚本 `send_email.sh` 和发送微信脚本 `send_wechat.sh` 进行推送。
 
 6. 登录时执行指定脚本
+
 ```shell
 # 将以上脚本移动到 `/usr/local/bin/`
 sudo cp system_status.sh /usr/local/bin/
@@ -155,7 +156,7 @@ vim /etc/bash.bashrc    # 所有用户
 /usr/local/bin/update_motd.sh
 ```
 
-## 修改 /etc/update-motd.d/
+## 3. 修改 /etc/update-motd.d/
 ```shell
 # 列出所有的配置文件
 ls -l
@@ -173,7 +174,7 @@ vim 50-landscape-sysinfo
 /usr/bin/landscape-sysinfo
 ```
 
-## 使用GPT提供的脚本
+## 4. 使用GPT提供的脚本
 SSH登录的欢迎页面显示如下内容
 1. 制造商
 2. 处理器
