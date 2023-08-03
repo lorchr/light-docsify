@@ -203,10 +203,12 @@ generate_welcome_message() {
     cpu=$(cat /proc/cpuinfo | grep "model name" | head -n 1 | awk -F': ' '{print $2}')
     os=$(uname -a | awk '{print $1, $3}')
     ip=$(hostname -I | awk '{print $1}')
+    # mac=$(cat /proc/net/arp | sed 1d | awk '{print $4}')
+    mac=$(ip link show eth0 | awk '/ether/ {print $2}')
     echo "1. 制造商：${manufacturer:-Qualcomm-Mi}"
     echo "2. 处理器：$cpu"
     echo "3. 操作系统：$os"
-    echo "4. IP地址：$ip"
+    echo "4. IP地址：$ip    MAC：$mac"
     echo ""
 
     # 获取系统负载和运行时间
@@ -262,10 +264,10 @@ echo "$welcome_message" | sudo tee /etc/motd
 ```shell
 *********************************************************************
         欢迎访问 Redmi 7a       |       Welcome login Redmi 7a        
-1. 制造商：Mi
+1. 制造商：Qualcomm-Mi
 2. 处理器：ARMv7 Processor rev 4 (v7l)
 3. 操作系统：Linux 4.9.193-perf-gc01f2fd
-4. IP地址：192.168.0.101
+4. IP地址：192.168.0.101    MAC：02:42:62:fb:97:f6
 
 5. 系统负载 1m，5m，15m： 3.07, 3.08, 2.86
   - 运行时间： 01:52:14 up 1 day

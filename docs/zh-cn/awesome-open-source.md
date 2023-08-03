@@ -13,9 +13,11 @@
 - [腾讯工具导航站](https://tool.browser.qq.com/)
 - [答题小程序](https://gitee.com/wulivicor/exam)
 - [Spring Boot + Vue3博客系统](https://github.com/weiwosuoai/WeBlog)
+- [南生论坛（仿掘金）](https://github.com/maliangnansheng/bbs-springboot)
 
 ## 工具类
 - [一个功能强大的开源简历生成器](https://github.com/xitanggg/open-resume)
 - [Javascript Markdown 编辑器](https://github.com/Tencent/cherry-markdown)
 - [在线生成头像](https://github.com/mayandev/notion-avatar)
 - [网页在线工具汇总](https://iui.su/1492/) https://lai.yuweining.cn/music
+- [浏览器自动化操作](https://github.com/AutomaApp/automa)
