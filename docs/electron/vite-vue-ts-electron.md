@@ -254,6 +254,8 @@ npm run electron:dev
 
 2. 在`package.json`中指定 `main`
 ```diff
+-  "type": "module",
++  "type": "commonjs",
 +  "main": "dist-electron/main.js"
 ```
 
@@ -308,7 +310,9 @@ npm run electron:build
 
 ## 最终的`package.json`
 
-**注意：** 需要将 `"type": "module"` 改为 `"type": "commonjs"`否则打包出来的程序运行会报错
+**注意：** 
+1. 需要将 `"type": "module"` 改为 `"type": "commonjs"`否则打包出来的程序运行会报错
+2. 在最后添加上程序的作者、描述、License等信息
 ```json
 {
   "name": "torch-web",
@@ -336,7 +340,10 @@ npm run electron:build
     "vite-plugin-electron": "^0.11.2",
     "vite-plugin-electron-renderer": "^0.14.5"
   },
-  "main": "dist-electron/main.js"
+  "main": "dist-electron/main.js",
+  "description": "https://github.com/lorchr/torch-web",
+  "author": "Lorch",
+  "license": "Apache-2.0"
 }
 ```
 
@@ -357,6 +364,6 @@ npm install
 npm run dev
 ```
  
-参考文档
+## 参考文档
 - [Electron + Vue3 + TS + Vite项目搭建教程！](https://zhuanlan.zhihu.com/p/521239144)
 - [Vue3 + TS + Vite2 + Electron16项目梳理](https://juejin.cn/post/7038467111441661960)
