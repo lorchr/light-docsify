@@ -1544,7 +1544,7 @@ Termux 可以安装其他 Linux 发行版系统，核心用到的工具是 chroo
 | VNC Viewer 3.6.1.42089 汉化版 | [蓝奏云](https://sqlsec.lanzoux.com/ibq43wb) | 远程连接使用               |
 | NetHunter KeX 4.0.7-6         | [蓝奏云](https://sqlsec.lanzoux.com/ibq4akb) | Kali 官方 远程连接工具     |
 | AnLinux 6.10                  | [蓝奏云](https://sqlsec.lanzoux.com/ibq4iuj) | 提供比较全面的系统安装脚本 |
-| AndroNix 4.2                  | [Google Play]()                              | 提供比较全面的系统安装脚本 |
+| AndroNix 4.2                  | [Google Play](https://sqlsec.lanzoux.com/ibq4iuj)                              | 提供比较全面的系统安装脚本 |
 
 VNC 工具的隐藏技巧，首先我们默认使用 VNC Viewer 这个工具远程是下图这张效果，可以看到并没有占满全屏，强迫症无法接受：
 

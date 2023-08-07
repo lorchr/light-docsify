@@ -106,8 +106,8 @@ fastboot reboot
 - [Google Play Store](https://apkpure.com/cn/google-play-store/com.android.vending/download/83631210-APK)
 - [Google Account Manager](https://apkpure.com/cn/google-account-manager/com.google.android.gsf.login/download)
 - [Google Contacts Sync](https://apkpure.com/cn/google-contacts-sync/com.google.android.syncadapters.contacts/download/32-APK)
-- [Google Partner Setup]()
-- [Google One Time Init]()
+- [Google Partner Setup](https://apkpure.com/cn/google-contacts-sync/com.google.android.syncadapters.contacts/download/32-APK)
+- [Google One Time Init](https://apkpure.com/cn/google-contacts-sync/com.google.android.syncadapters.contacts/download/32-APK)
 
 
 ## 7. 问题

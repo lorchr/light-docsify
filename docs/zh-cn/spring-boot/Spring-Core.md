@@ -188,9 +188,9 @@ public interface PropertyResolver {
 ```
 如上是PropertyResolver提供的部分方法，这里简单说一下上面方法的作用
 
-- getProperty(String key)，很明显是通过配置的key获取对应的value值
-- getProperty(String key, Class<T> targetType)，这是获取配置，并转换成对应的类型，比如你获取的是个字符串的"true"，这里就可以给你转换成布尔值的true，具体的底层实现留到下一节讲
-- resolvePlaceholders(String text)，这类方法可以处理${...}占位符，也就是先取出${...}占位符中的key，然后再通过key获取到值
+- `getProperty(String key)`，很明显是通过配置的key获取对应的value值
+- `getProperty(String key, Class<T> targetType)`，这是获取配置，并转换成对应的类型，比如你获取的是个字符串的"true"，这里就可以给你转换成布尔值的true，具体的底层实现留到下一节讲
+- `resolvePlaceholders(String text)`，这类方法可以处理${...}占位符，也就是先取出${...}占位符中的key，然后再通过key获取到值
 
 所以Environment主要有一下几种功能：
 
@@ -293,7 +293,7 @@ PropertySourceLoader默认有两个实现，分别用来解析properties和yml�
 图片
 
 ## 类型转换
-在上一节介绍Environment时提到了它的getProperty(String key, Class<T> targetType)可以将配置的字符串转换成对应的类型，那么他是如何转换的呢？
+在上一节介绍Environment时提到了它的`getProperty(String key, Class<T> targetType)`可以将配置的字符串转换成对应的类型，那么他是如何转换的呢？
 
 这就跟本文要讲的Spring类型转换机制有关了
 
@@ -369,13 +369,13 @@ GenericConverter也是类型转换的接口
 图片
 那Converter跟GenericConverter有什么关系呢？
 
-这里我举个例子，假设现在需要将将源集合Collection<String>转换成目标集合Collection<Date>
+这里我举个例子，假设现在需要将将源集合`Collection<String>`转换成目标集合`Collection<Date>`
 
 图片
 假设现在有个String转换成Date类型的Converter，咱就叫StringToDateConverter，那么整个转换过程如下：
 
-- 首先会找到GenericConverter的一个实现CollectionToCollectionConverter，从名字也可以看出来，是将一个几个转换成另一个集合
-- 然后遍历源集合Collection<String>，取出元素
+- 首先会找到`GenericConverter`的一个实现`CollectionToCollectionConverter`，从名字也可以看出来，是将一个几个转换成另一个集合
+- 然后遍历源集合`Collection<String>`，取出元素
 - 根据目标集合泛型Date，找到StringToDateConverter，将String转换成Date，将转换的Date存到一个新的集合
 - 返回这个新的集合，这样就实现了集合到集合的转换
 
